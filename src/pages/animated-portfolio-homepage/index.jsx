@@ -5,14 +5,16 @@ import LoadingScreen from './components/LoadingScreen';
 import AnimatedCursor from './components/AnimatedCursor';
 import ScrollIndicator from './components/ScrollIndicator';
 import StickyNavigation from '../../components/ui/StickyNavigation';
-import HeroSection from './components/HeroSection';
+import ParticleBackground from './components/ParticleBackground';
+import EnhancedHeroSection from './components/EnhancedHeroSection';
 import AboutSection from './components/AboutSection';
 import ExperienceSection from './components/ExperienceSection';
-import SkillsSection from './components/SkillsSection';
-import ProjectsSection from './components/ProjectsSection';
+import InteractiveSkillsSection from './components/InteractiveSkillsSection';
+import EnhancedProjectsSection from './components/EnhancedProjectsSection';
 import ResumeSection from './components/ResumeSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ScrollToTop from '../../components/ui/ScrollToTop';
 
 const AnimatedPortfolioHomepage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -110,6 +112,9 @@ const AnimatedPortfolioHomepage = () => {
       {/* Main Content */}
       {!isLoading && (
         <div className="relative">
+          {/* Particle Background */}
+          <ParticleBackground />
+          
           {/* Animated Cursor */}
           <AnimatedCursor />
           
@@ -119,9 +124,12 @@ const AnimatedPortfolioHomepage = () => {
           {/* Sticky Navigation */}
           <StickyNavigation />
           
+          {/* Scroll to Top Button */}
+          <ScrollToTop />
+          
           {/* Main Sections */}
           <main className="relative">
-            <HeroSection />
+            <EnhancedHeroSection />
             
             <div data-animate="fadeIn" data-delay="0.2">
               <AboutSection />
@@ -132,11 +140,11 @@ const AnimatedPortfolioHomepage = () => {
             </div>
             
             <div data-animate="slideLeft" data-delay="0.3">
-              <SkillsSection />
+              <InteractiveSkillsSection />
             </div>
             
             <div data-animate="scaleIn" data-delay="0.2">
-              <ProjectsSection />
+              <EnhancedProjectsSection />
             </div>
             
             <div data-animate="slideRight" data-delay="0.4">
