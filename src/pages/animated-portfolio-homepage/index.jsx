@@ -111,7 +111,7 @@ const AnimatedPortfolioHomepage = () => {
 
       {/* Main Content */}
       {!isLoading && (
-        <div className="relative">
+        <div className="relative min-h-screen">
           {/* Particle Background */}
           <ParticleBackground />
           
@@ -128,7 +128,7 @@ const AnimatedPortfolioHomepage = () => {
           <ScrollToTop />
           
           {/* Main Sections */}
-          <main className="relative">
+          <main className="relative z-10">
             <EnhancedHeroSection />
             
             <div data-animate="fadeIn" data-delay="0.2">

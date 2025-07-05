@@ -5,7 +5,7 @@ import Icon from '../AppIcon';
 
 const StickyNavigation = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('hero');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,6 +14,7 @@ const StickyNavigation = () => {
   const itemsRef = useRef([]);
 
   const navigationItems = [
+    { label: 'Home', path: '#hero', icon: 'Home', color: 'from-blue-500 to-cyan-500' },
     { label: 'About', path: '#about', icon: 'User', color: 'from-blue-500 to-cyan-500' },
     { label: 'Experience', path: '#experience', icon: 'Briefcase', color: 'from-purple-500 to-pink-500' },
     { label: 'Skills', path: '#skills', icon: 'Code', color: 'from-green-500 to-teal-500' },
@@ -55,10 +56,14 @@ const StickyNavigation = () => {
       // Enhanced hide/show navigation with smooth animation
       if (currentScrollY > lastScrollY && currentScrollY > 150) {
         setIsVisible(false);
-        gsap.to(navRef.current, { y: -100, duration: 0.3, ease: "power2.inOut" });
+        if (navRef.current) {
+          gsap.to(navRef.current, { y: -100, duration: 0.3, ease: "power2.inOut" });
+        }
       } else {
         setIsVisible(true);
-        gsap.to(navRef.current, { y: 0, duration: 0.3, ease: "power2.inOut" });
+        if (navRef.current) {
+          gsap.to(navRef.current, { y: 0, duration: 0.3, ease: "power2.inOut" });
+        }
       }
       
       setLastScrollY(currentScrollY);
@@ -103,20 +108,21 @@ const StickyNavigation = () => {
       // Enhanced scroll animation
       const offsetTop = element.offsetTop - 100; // Account for fixed nav height
       
-      gsap.to(window, {
-        duration: 1.2,
-        scrollTo: { y: offsetTop },
-        ease: "power2.inOut"
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
       });
 
       // Pulse animation for clicked item
-      gsap.to(itemsRef.current[index], {
-        scale: 1.1,
-        duration: 0.2,
-        yoyo: true,
-        repeat: 1,
-        ease: "power2.inOut"
-      });
+      if (itemsRef.current[index]) {
+        gsap.to(itemsRef.current[index], {
+          scale: 1.1,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut"
+        });
+      }
     }
     
     setIsMobileMenuOpen(false);
@@ -127,10 +133,13 @@ const StickyNavigation = () => {
     
     if (!isMobileMenuOpen) {
       // Animate mobile menu items
-      gsap.fromTo('.mobile-nav-item', 
-        { x: -30, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" }
-      );
+      setTimeout(() => {
+        const mobileItems = document.querySelectorAll('.mobile-nav-item');
+        gsap.fromTo(mobileItems, 
+          { x: -30, opacity: 0 }, 
+          { x: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" }
+        );
+      }, 100);
     }
   };
 
@@ -169,7 +178,7 @@ const StickyNavigation = () => {
               {/* Enhanced Logo with proper spacing */}
               <div className="flex-shrink-0 min-w-0">
                 <button
-                  onClick={() => handleNavClick('#about', 0)}
+                  onClick={() => handleNavClick('#hero', 0)}
                   className="group flex items-center space-x-3 text-white hover:text-blue-400 transition-all duration-300"
                 >
                   <div className="relative w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
