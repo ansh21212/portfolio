@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #2563EB; /* blue-600 */
+    --color-primary-foreground: #F8FAFC; /* slate-50 */
+    
+    /* Secondary Colors */
+    --color-secondary: #7C3AED; /* violet-600 */
+    --color-secondary-foreground: #F8FAFC; /* slate-50 */
+    
+    /* Accent Colors */
+    --color-accent: #F59E0B; /* amber-500 */
+    --color-accent-foreground: #0F172A; /* slate-900 */
+    
+    /* Background Colors */
+    --color-background: #0F172A; /* slate-900 */
+    --color-surface: #1E293B; /* slate-800 */
+    
+    /* Text Colors */
+    --color-text-primary: #F8FAFC; /* slate-50 */
+    --color-text-secondary: #94A3B8; /* slate-400 */
+    
+    /* Status Colors */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #F8FAFC; /* slate-50 */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #0F172A; /* slate-900 */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #F8FAFC; /* slate-50 */
+    
+    /* Border Colors */
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border-hover: rgba(255, 255, 255, 0.2);
+    
+    /* Shadow Colors */
+    --shadow-elevation: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* Animation Easing */
+    --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-body;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.7);
+  }
+}
+
+@layer components {
+  .animate-smooth {
+    transition-timing-function: var(--ease-smooth);
+  }
+  
+  .animate-bounce-custom {
+    transition-timing-function: var(--ease-bounce);
+  }
+  
+  .elevation {
+    box-shadow: var(--shadow-elevation);
+  }
+  
+  .elevation-modal {
+    box-shadow: var(--shadow-modal);
+  }
+
+  /* Navigation specific styles */
+  .nav-container {
+    @apply relative z-50;
+  }
+
+  .nav-content {
+    @apply flex items-center justify-between;
+    min-height: 4rem; /* 64px */
+  }
+
+  .nav-logo {
+    @apply flex-shrink-0;
+    min-width: fit-content;
+  }
+
+  .nav-items {
+    @apply flex-1 flex justify-center;
+    max-width: calc(100vw - 300px); /* Account for logo and mobile button */
+  }
+
+  .nav-mobile-toggle {
+    @apply flex-shrink-0;
+    min-width: fit-content;
+  }
+
+  /* Responsive navigation adjustments */
+  @media (max-width: 1024px) {
+    .nav-items {
+      max-width: calc(100vw - 250px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-items {
+      @apply hidden;
+    }
+  }
+
+  /* Animation utilities */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .slide-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .slide-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scale-in.animate {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Layout utilities */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  /* Animation delay utilities */
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in-up,
+  .slide-in-left,
+  .slide-in-right,
+  .scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-900;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .nav-container {
+    @apply border-b-2 border-white;
+  }
+  
+  button,
+  a {
+    @apply border border-current;
+  }
+}
