@@ -19,12 +19,12 @@
     --color-accent-foreground: #0F172A; /* slate-900 */
     
     /* Background Colors */
-    --color-background: #0F172A; /* slate-900 */
-    --color-surface: #1E293B; /* slate-800 */
+    --color-background: #FFFFFF; /* white */
+    --color-surface: #F8FAFC; /* slate-50 */
     
     /* Text Colors */
-    --color-text-primary: #F8FAFC; /* slate-50 */
-    --color-text-secondary: #94A3B8; /* slate-400 */
+    --color-text-primary: #0F172A; /* slate-900 */
+    --color-text-secondary: #64748B; /* slate-500 */
     
     /* Status Colors */
     --color-success: #10B981; /* emerald-500 */
@@ -35,8 +35,8 @@
     --color-error-foreground: #F8FAFC; /* slate-50 */
     
     /* Border Colors */
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-border-hover: rgba(255, 255, 255, 0.2);
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-border-hover: rgba(0, 0, 0, 0.2);
     
     /* Shadow Colors */
     --shadow-elevation: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
